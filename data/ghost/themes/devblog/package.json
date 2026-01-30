@@ -55,11 +55,6 @@
         "type": "select",
         "options": ["modern-sans", "elegant-serif"],
         "default": "modern-sans"
-      },
-      "show_publication_cover": {
-        "type": "boolean",
-        "default": true,
-        "group": "homepage"
       }
     }
   }

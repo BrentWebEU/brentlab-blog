@@ -15,16 +15,7 @@
 }
 
 .hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1200px;
-  height: 100%;
-  background: radial-gradient(ellipse at top, hsl(var(--primary) / 0.03), transparent 70%);
-  pointer-events: none;
+  display: none;
 }
 
 .hero__container {
