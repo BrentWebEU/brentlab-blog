@@ -41,6 +41,21 @@
   z-index: 1;
 }
 
+.hero__cover {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto var(--space-8);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero__cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .hero__badge {
   display: inline-flex;
   align-items: center;

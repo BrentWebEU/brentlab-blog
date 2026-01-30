@@ -1432,6 +1432,12 @@ button {
   font-size: var(--font-size-lg);
 }
 
+/* Page: hide title and feature image when @page.show_title_and_feature_image is false (Beta editor) */
+.page-hide-title-and-feature-image .page-header,
+.page-hide-title-and-feature-image .page-feature-image {
+  display: none;
+}
+
 /* ==========================================================================
    14. Responsive Design - Mobile First
    ========================================================================== */

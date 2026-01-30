@@ -1,11 +1,12 @@
 {{!-- 
 Template Name: Page
 Description: Static page template
+Supports @page.show_title_and_feature_image (Beta editor) - when false, title and feature image are hidden via CSS
 --}}
 {{!< default}}
 
 {{#post}}
-    <article class="page {{post_class}}">
+    <article class="page {{post_class}}{{#match @page.show_title_and_feature_image "=" false}} page-hide-title-and-feature-image{{/match}}">
         <header class="page-header">
             <div class="container">
                 <div class="page-header-content content-width">

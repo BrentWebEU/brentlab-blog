@@ -43,18 +43,18 @@
     "custom": {
       "navigation_layout": {
         "type": "select",
-        "options": ["Logo on cover", "Logo in the middle", "Stacked"],
-        "default": "Logo on cover"
+        "options": ["logo-on-cover", "logo-in-middle", "stacked"],
+        "default": "logo-on-cover"
       },
       "title_font": {
         "type": "select",
-        "options": ["Modern sans-serif", "Elegant serif"],
-        "default": "Modern sans-serif"
+        "options": ["modern-sans", "elegant-serif"],
+        "default": "modern-sans"
       },
       "body_font": {
         "type": "select",
-        "options": ["Modern sans-serif", "Elegant serif"],
-        "default": "Modern sans-serif"
+        "options": ["modern-sans", "elegant-serif"],
+        "default": "modern-sans"
       },
       "show_publication_cover": {
         "type": "boolean",
