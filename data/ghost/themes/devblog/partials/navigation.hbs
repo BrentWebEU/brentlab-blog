@@ -1,0 +1,16 @@
+{{!-- Navigation Menu --}}
+{{#if @site.navigation}}
+    <ul class="nav-list" role="list">
+        {{#foreach @site.navigation}}
+            <li class="nav-item">
+                <a 
+                    href="{{url absolute="true"}}" 
+                    class="nav-link {{#if current}}nav-link-active{{/if}}"
+                    {{#if current}}aria-current="page"{{/if}}
+                >
+                    {{label}}
+                </a>
+            </li>
+        {{/foreach}}
+    </ul>
+{{/if}}

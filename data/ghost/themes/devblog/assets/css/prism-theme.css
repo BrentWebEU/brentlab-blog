@@ -1,0 +1,356 @@
+/**
+ * Prism.js Custom Theme for DevBlog
+ * Light: Modified Prism Tomorrow
+ * Dark: Modified Prism One Dark
+ */
+
+/* ==========================================================================
+   Code Block Base Styles
+   ========================================================================== */
+
+pre[class*="language-"] {
+    position: relative;
+    background-color: var(--color-code-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    margin: var(--space-6) 0;
+    overflow: auto;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    tab-size: 4;
+    hyphens: none;
+}
+
+code[class*="language-"] {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-code-text);
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+    padding: 0.1em 0.3em;
+    border-radius: var(--radius-sm);
+    background: var(--color-code-bg);
+    color: var(--color-code-text);
+}
+
+/* ==========================================================================
+   Code Toolbar (Language Badge & Copy Button)
+   ========================================================================== */
+
+.code-toolbar {
+    position: relative;
+    margin: var(--space-6) 0;
+}
+
+.code-toolbar pre {
+    margin: 0;
+    padding-top: var(--space-12);
+}
+
+.code-lang-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-primary);
+    color: white;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-lg) 0 var(--radius-md) 0;
+    z-index: 1;
+}
+
+.code-copy-btn {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    z-index: 1;
+}
+
+.code-copy-btn:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+}
+
+.code-copy-btn.copied {
+    background: var(--color-linux-green);
+    border-color: var(--color-linux-green);
+    color: white;
+}
+
+.code-copy-icon {
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Line Numbers
+   ========================================================================== */
+
+pre.line-numbers {
+    position: relative;
+    padding-left: var(--space-16);
+    counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: var(--space-4);
+    left: 0;
+    width: var(--space-12);
+    font-size: var(--font-size-sm);
+    letter-spacing: -1px;
+    border-right: 1px solid var(--color-border);
+    user-select: none;
+}
+
+.line-numbers-rows > span {
+    display: block;
+    counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: var(--color-text-muted);
+    display: block;
+    padding-right: var(--space-2);
+    text-align: right;
+}
+
+/* ==========================================================================
+   Syntax Highlighting - Light Mode
+   ========================================================================== */
+
+:root {
+    --code-comment: #6a737d;
+    --code-keyword: #d73a49;
+    --code-string: #032f62;
+    --code-function: #6f42c1;
+    --code-variable: #005cc5;
+    --code-number: #005cc5;
+    --code-operator: #d73a49;
+    --code-class: #6f42c1;
+    --code-tag: #22863a;
+    --code-attr: #6f42c1;
+    --code-boolean: #005cc5;
+    --code-constant: #005cc5;
+    --code-regex: #032f62;
+}
+
+/* Dark Mode Syntax Colors */
+[data-theme="dark"] {
+    --code-comment: #5c6370;
+    --code-keyword: #c678dd;
+    --code-string: #98c379;
+    --code-function: #61afef;
+    --code-variable: #e06c75;
+    --code-number: #d19a66;
+    --code-operator: #56b6c2;
+    --code-class: #e5c07b;
+    --code-tag: #e06c75;
+    --code-attr: #d19a66;
+    --code-boolean: #d19a66;
+    --code-constant: #d19a66;
+    --code-regex: #98c379;
+}
+
+/* ==========================================================================
+   Token Styles
+   ========================================================================== */
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: var(--code-comment);
+    font-style: italic;
+}
+
+.token.namespace {
+    opacity: 0.7;
+}
+
+.token.string,
+.token.attr-value {
+    color: var(--code-string);
+}
+
+.token.punctuation,
+.token.operator {
+    color: var(--code-operator);
+}
+
+.token.entity,
+.token.url,
+.token.symbol,
+.token.number,
+.token.boolean,
+.token.constant,
+.token.regex,
+.token.inserted {
+    color: var(--code-number);
+}
+
+.token.atrule,
+.token.keyword,
+.token.attr-name,
+.language-autohotkey .token.selector {
+    color: var(--code-keyword);
+}
+
+.token.function,
+.token.deleted,
+.language-autohotkey .token.tag {
+    color: var(--code-function);
+}
+
+.token.tag,
+.token.selector,
+.language-autohotkey .token.keyword {
+    color: var(--code-tag);
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+.token.class-name {
+    color: var(--code-class);
+}
+
+.token.variable {
+    color: var(--code-variable);
+}
+
+.token.builtin,
+.token.char,
+.token.property {
+    color: var(--code-attr);
+}
+
+/* ==========================================================================
+   Special Highlighting
+   ========================================================================== */
+
+/* Highlighted lines */
+.highlight-line {
+    background-color: rgba(255, 255, 0, 0.1);
+    display: block;
+    margin: 0 calc(var(--space-4) * -1);
+    padding: 0 var(--space-4);
+}
+
+[data-theme="dark"] .highlight-line {
+    background-color: rgba(255, 255, 0, 0.15);
+}
+
+/* Diff highlighting */
+.token.deleted {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.token.inserted {
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+[data-theme="dark"] .token.deleted {
+    background-color: rgba(255, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .token.inserted {
+    background-color: rgba(0, 255, 0, 0.15);
+}
+
+/* ==========================================================================
+   Language-Specific Adjustments
+   ========================================================================== */
+
+/* Bash/Shell */
+.language-bash .token.function,
+.language-shell .token.function {
+    color: var(--code-keyword);
+}
+
+/* JSON */
+.language-json .token.property {
+    color: var(--code-variable);
+}
+
+.language-json .token.string {
+    color: var(--code-string);
+}
+
+/* CSS */
+.language-css .token.selector {
+    color: var(--code-tag);
+}
+
+.language-css .token.property {
+    color: var(--code-variable);
+}
+
+/* Markdown */
+.language-markdown .token.title {
+    color: var(--code-keyword);
+    font-weight: bold;
+}
+
+.language-markdown .token.url {
+    color: var(--code-string);
+}
+
+/* ==========================================================================
+   Scrollbar Styling for Code Blocks
+   ========================================================================== */
+
+pre[class*="language-"]::-webkit-scrollbar {
+    height: 8px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+}

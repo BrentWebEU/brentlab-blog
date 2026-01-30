@@ -1,0 +1,187 @@
+{{!-- 
+Template Name: Post
+Description: Individual blog post template
+--}}
+{{!< default}}
+
+{{#post}}
+    <article class="post {{post_class}}">
+        {{!-- Post Header --}}
+        <header class="post-header">
+            {{#if feature_image}}
+                <div class="post-hero-image">
+                    <img 
+                        src="{{feature_image}}" 
+                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                        loading="eager"
+                    >
+                    <div class="post-hero-overlay"></div>
+                </div>
+            {{/if}}
+            
+            <div class="container">
+                <div class="post-header-content content-width">
+                    {{!-- Post Meta --}}
+                    <div class="post-meta">
+                        {{#if primary_tag}}
+                            <a href="{{primary_tag.url}}" class="post-tag">
+                                {{primary_tag.name}}
+                            </a>
+                        {{/if}}
+                        <span class="post-meta-divider">•</span>
+                        <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">
+                            {{date format="MMM DD, YYYY"}}
+                        </time>
+                        {{#if reading_time}}
+                            <span class="post-meta-divider">•</span>
+                            <span class="post-reading-time">{{reading_time}}</span>
+                        {{/if}}
+                    </div>
+                    
+                    {{!-- Post Title --}}
+                    <h1 class="post-title">{{title}}</h1>
+                    
+                    {{!-- Post Excerpt --}}
+                    {{#if custom_excerpt}}
+                        <p class="post-excerpt">{{custom_excerpt}}</p>
+                    {{/if}}
+                    
+                    {{!-- Post Author --}}
+                    <div class="post-author-meta">
+                        {{#primary_author}}
+                            <div class="post-author-info">
+                                {{#if profile_image}}
+                                    <a href="{{url}}" class="post-author-avatar">
+                                        <img src="{{profile_image}}" alt="{{name}}" loading="lazy">
+                                    </a>
+                                {{/if}}
+                                <div class="post-author-details">
+                                    <a href="{{url}}" class="post-author-name">{{name}}</a>
+                                    {{#if bio}}
+                                        <p class="post-author-bio-short">{{bio}}</p>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        {{/primary_author}}
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        {{!-- Post Content --}}
+        <div class="post-content-wrapper">
+            <div class="container">
+                <div class="post-content content-width">
+                    {{content}}
+                </div>
+            </div>
+        </div>
+        
+        {{!-- Post Footer --}}
+        <footer class="post-footer">
+            <div class="container">
+                <div class="post-footer-content content-width">
+                    {{!-- Tags --}}
+                    {{#if tags}}
+                        <div class="post-tags">
+                            <h4 class="post-tags-title">Tagged with:</h4>
+                            <ul class="post-tags-list" role="list">
+                                {{#foreach tags}}
+                                    <li class="post-tag-item">
+                                        <a href="{{url}}" class="post-tag-link">{{name}}</a>
+                                    </li>
+                                {{/foreach}}
+                            </ul>
+                        </div>
+                    {{/if}}
+                    
+                    {{!-- Social Share --}}
+                    {{> "social-share"}}
+                    
+                    {{!-- Author Bio --}}
+                    {{#primary_author}}
+                        <div class="post-author-card">
+                            {{#if profile_image}}
+                                <a href="{{url}}" class="author-card-avatar">
+                                    <img src="{{profile_image}}" alt="{{name}}" loading="lazy">
+                                </a>
+                            {{/if}}
+                            <div class="author-card-content">
+                                <h4 class="author-card-name">
+                                    <a href="{{url}}">{{name}}</a>
+                                </h4>
+                                {{#if bio}}
+                                    <p class="author-card-bio">{{bio}}</p>
+                                {{/if}}
+                                <div class="author-card-meta">
+                                    {{#if location}}
+                                        <span class="author-card-location">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                                <circle cx="12" cy="10" r="3"></circle>
+                                            </svg>
+                                            {{location}}
+                                        </span>
+                                    {{/if}}
+                                    {{#if website}}
+                                        <a href="{{website}}" class="author-card-website" target="_blank" rel="noopener noreferrer">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                            </svg>
+                                            Website
+                                        </a>
+                                    {{/if}}
+                                    {{#if twitter}}
+                                        <a href="{{twitter_url twitter}}" class="author-card-twitter" target="_blank" rel="noopener noreferrer">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                            </svg>
+                                            Twitter
+                                        </a>
+                                    {{/if}}
+                                </div>
+                                <a href="{{url}}" class="author-card-link">
+                                    More posts by {{name}}
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    {{/primary_author}}
+                </div>
+            </div>
+        </footer>
+    </article>
+    
+    {{!-- Related Posts --}}
+    {{#get "posts" limit="3" filter="tags:{{primary_tag.slug}}+id:-{{id}}" as |related_posts|}}
+        {{#if related_posts}}
+            <aside class="related-posts">
+                <div class="container">
+                    <h3 class="related-posts-title">Related Posts</h3>
+                    <div class="related-posts-grid">
+                        {{#foreach related_posts}}
+                            {{> "post-card"}}
+                        {{/foreach}}
+                    </div>
+                </div>
+            </aside>
+        {{/if}}
+    {{/get}}
+    
+    {{!-- Comments (if enabled) --}}
+    {{#if comments}}
+        <section class="post-comments">
+            <div class="container">
+                <div class="content-width">
+                    <h3 class="comments-title">Comments</h3>
+                    <div id="ghost-comments"></div>
+                </div>
+            </div>
+        </section>
+    {{/if}}
+{{/post}}

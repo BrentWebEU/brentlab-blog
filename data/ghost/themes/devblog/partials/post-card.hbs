@@ -1,0 +1,65 @@
+{{!-- Post Card Component --}}
+<article class="post-card {{post_class}}">
+    <a href="{{url}}" class="post-card-link" aria-label="{{title}}">
+        {{#if feature_image}}
+            <div class="post-card-image">
+                <img 
+                    src="{{img_url feature_image size="m"}}" 
+                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                    loading="lazy"
+                >
+                {{#if featured}}
+                    <span class="post-card-featured-badge" aria-label="Featured">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </span>
+                {{/if}}
+            </div>
+        {{/if}}
+        
+        <div class="post-card-content">
+            {{!-- Post Meta --}}
+            <div class="post-card-meta">
+                <time class="post-card-date" datetime="{{date format="YYYY-MM-DD"}}">
+                    {{date format="MMM DD, YYYY"}}
+                </time>
+                {{#if primary_tag}}
+                    <span class="post-card-divider">•</span>
+                    <a 
+                        href="{{primary_tag.url}}" 
+                        class="post-card-tag"
+                        onclick="event.stopPropagation();"
+                    >
+                        {{primary_tag.name}}
+                    </a>
+                {{/if}}
+                {{#if reading_time}}
+                    <span class="post-card-divider">•</span>
+                    <span class="post-card-reading-time">{{reading_time}}</span>
+                {{/if}}
+            </div>
+            
+            {{!-- Post Title --}}
+            <h3 class="post-card-title">{{title}}</h3>
+            
+            {{!-- Post Excerpt --}}
+            {{#if excerpt}}
+                <p class="post-card-excerpt">{{excerpt}}</p>
+            {{/if}}
+            
+            {{!-- Author Info --}}
+            <div class="post-card-author">
+                {{#if primary_author.profile_image}}
+                    <img 
+                        src="{{primary_author.profile_image}}" 
+                        alt="{{primary_author.name}}"
+                        class="post-card-author-avatar"
+                        loading="lazy"
+                    >
+                {{/if}}
+                <span class="post-card-author-name">{{primary_author.name}}</span>
+            </div>
+        </div>
+    </a>
+</article>

@@ -1,0 +1,241 @@
+{{!-- 
+Template Name: Error Page (404)
+Description: Custom 404 error page with terminal theme
+--}}
+{{!< default}}
+
+<div class="error-page">
+    <div class="container">
+        <div class="error-content content-width">
+            <div class="error-terminal">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button terminal-button-close"></span>
+                        <span class="terminal-button terminal-button-minimize"></span>
+                        <span class="terminal-button terminal-button-maximize"></span>
+                    </div>
+                    <div class="terminal-title">terminal — error</div>
+                </div>
+                <div class="terminal-body">
+                    <pre class="terminal-output">
+<span class="terminal-prompt">$ </span><span class="terminal-command">locate page</span>
+<span class="terminal-error">Error: Page not found</span>
+
+<span class="terminal-ascii">
+    _____ _  _   ___  _  _   
+   | ____| || | / _ \| || |  
+   |  _| | || || | | | || |_ 
+   | |___|__   _| |_| |__   _|
+   |_____|  |_|  \___/   |_|  
+</span>
+
+<span class="terminal-text">Oops! The page you're looking for doesn't exist.</span>
+<span class="terminal-text">It might have been moved or deleted.</span>
+
+<span class="terminal-prompt">$ </span><span class="terminal-command">ls available_options</span>
+<span class="terminal-list">
+  📁 <a href="{{@site.url}}" class="terminal-link">home</a>          - Return to homepage
+  📁 <a href="{{@site.url}}/tag/" class="terminal-link">tags</a>          - Browse by topic
+  📁 <a href="{{@site.url}}/author/" class="terminal-link">authors</a>       - View all authors
+  🔍 <span class="terminal-link search-link">search</span>        - Find what you need
+</span>
+
+<span class="terminal-penguin">
+      .---.
+     /     \
+     \.@-@./
+     /`\_/`\
+    //  _  \\
+   | \     )|_
+  /`\_`>  <_/ \
+  \__/'---'\__/
+</span>
+
+<span class="terminal-prompt">$ </span><span class="terminal-cursor">█</span>
+                    </pre>
+                </div>
+            </div>
+            
+            <div class="error-actions">
+                <a href="{{@site.url}}" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Go Home
+                </a>
+                <button class="btn btn-outline" onclick="history.back()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Go Back
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.error-page {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-16) 0;
+}
+
+.error-content {
+    text-align: center;
+}
+
+.error-terminal {
+    background: var(--color-code-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: var(--space-8);
+    box-shadow: var(--shadow-xl);
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-button-close {
+    background: #ff5f56;
+}
+
+.terminal-button-minimize {
+    background: #ffbd2e;
+}
+
+.terminal-button-maximize {
+    background: #27c93f;
+}
+
+.terminal-title {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+.terminal-body {
+    padding: var(--space-6);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    text-align: left;
+}
+
+.terminal-output {
+    color: var(--color-text);
+    margin: 0;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.terminal-prompt {
+    color: var(--color-linux-green);
+    font-weight: var(--font-weight-bold);
+}
+
+.terminal-command {
+    color: var(--color-primary);
+}
+
+.terminal-error {
+    color: #e06c75;
+    font-weight: var(--font-weight-bold);
+}
+
+.terminal-ascii {
+    color: var(--color-primary);
+    display: block;
+    margin: var(--space-4) 0;
+    font-weight: var(--font-weight-bold);
+}
+
+.terminal-text {
+    color: var(--color-text-secondary);
+    display: block;
+    margin: var(--space-2) 0;
+}
+
+.terminal-list {
+    display: block;
+    margin: var(--space-4) 0;
+}
+
+.terminal-link {
+    color: var(--color-accent);
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.terminal-link:hover {
+    color: var(--color-primary);
+}
+
+.terminal-penguin {
+    color: var(--color-text-muted);
+    display: block;
+    margin: var(--space-6) 0;
+    font-size: 0.9em;
+}
+
+.terminal-cursor {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.error-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+    .terminal-body {
+        padding: var(--space-4);
+        font-size: 0.75rem;
+    }
+    
+    .terminal-ascii,
+    .terminal-penguin {
+        font-size: 0.65rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .error-actions .btn {
+        width: 100%;
+    }
+}
+</style>

@@ -1,0 +1,28 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Terminal Window -->
+  <rect x="20" y="40" width="160" height="120" rx="8" fill="currentColor" opacity="0.1" stroke="currentColor" stroke-width="2"/>
+  
+  <!-- Terminal Header -->
+  <rect x="20" y="40" width="160" height="25" rx="8" fill="currentColor" opacity="0.2"/>
+  
+  <!-- Terminal Buttons -->
+  <circle cx="35" cy="52.5" r="4" fill="#FF5F56"/>
+  <circle cx="50" cy="52.5" r="4" fill="#FFBD2E"/>
+  <circle cx="65" cy="52.5" r="4" fill="#27C93F"/>
+  
+  <!-- Terminal Content - Prompt -->
+  <text x="35" y="90" font-family="monospace" font-size="16" fill="currentColor" opacity="0.8">$</text>
+  
+  <!-- Terminal Content - Code -->
+  <text x="50" y="90" font-family="monospace" font-size="14" fill="currentColor" opacity="0.6">./devblog</text>
+  
+  <!-- Terminal Content - Output Lines -->
+  <line x1="35" y1="100" x2="165" y2="100" stroke="currentColor" opacity="0.3" stroke-width="2"/>
+  <line x1="35" y1="115" x2="140" y2="115" stroke="currentColor" opacity="0.3" stroke-width="2"/>
+  <line x1="35" y1="130" x2="155" y2="130" stroke="currentColor" opacity="0.3" stroke-width="2"/>
+  
+  <!-- Cursor Blinking -->
+  <rect x="35" y="137" width="8" height="14" fill="currentColor" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0;0.8" dur="1s" repeatCount="indefinite"/>
+  </rect>
+</svg>

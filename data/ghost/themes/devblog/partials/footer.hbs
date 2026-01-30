@@ -1,0 +1,104 @@
+{{!-- Site Footer --}}
+<footer class="site-footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-content">
+            {{!-- Footer Branding --}}
+            <div class="footer-branding">
+                <a href="{{@site.url}}" class="footer-logo">
+                    {{#if @site.logo}}
+                        <img src="{{@site.logo}}" alt="{{@site.title}}">
+                    {{else}}
+                        {{@site.title}}
+                    {{/if}}
+                </a>
+                {{#if @site.description}}
+                    <p class="footer-description">{{@site.description}}</p>
+                {{/if}}
+            </div>
+            
+            {{!-- Footer Navigation --}}
+            {{#if @site.secondary_navigation}}
+                <nav class="footer-nav" role="navigation" aria-label="Footer navigation">
+                    <ul class="footer-nav-list" role="list">
+                        {{#foreach @site.secondary_navigation}}
+                            <li class="footer-nav-item">
+                                <a href="{{url absolute="true"}}" class="footer-nav-link">
+                                    {{label}}
+                                </a>
+                            </li>
+                        {{/foreach}}
+                    </ul>
+                </nav>
+            {{/if}}
+            
+            {{!-- Social Links (if configured) --}}
+            {{#if @site.facebook}}{{#if @site.twitter}}
+                <div class="footer-social">
+                    <ul class="social-links" role="list">
+                        {{#if @site.twitter}}
+                            <li class="social-link-item">
+                                <a 
+                                    href="{{twitter_url @site.twitter}}" 
+                                    class="social-link"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Twitter"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        {{/if}}
+                        {{#if @site.facebook}}
+                            <li class="social-link-item">
+                                <a 
+                                    href="{{facebook_url @site.facebook}}" 
+                                    class="social-link"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Facebook"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        {{/if}}
+                    </ul>
+                </div>
+            {{/if}}{{/if}}
+            
+            {{!-- Copyright & Credits --}}
+            <div class="footer-credits">
+                <p class="copyright">
+                    &copy; {{date format="YYYY"}} <a href="{{@site.url}}">{{@site.title}}</a>
+                    {{#if @site.members_enabled}}
+                        &bull; <a href="{{@site.url}}/subscribe/">Subscribe</a>
+                    {{/if}}
+                </p>
+                <p class="powered-by">
+                    Powered by 
+                    <span class="coffee-toggle" title="Click for fun!">☕</span> 
+                    and 
+                    <a href="https://ghost.org" target="_blank" rel="noopener noreferrer">Ghost</a>
+                    &bull; 
+                    Theme: DevBlog
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    {{!-- Back to Top Button --}}
+    <button 
+        class="back-to-top" 
+        id="back-to-top"
+        aria-label="Back to top"
+        title="Back to top"
+    >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </button>
+</footer>

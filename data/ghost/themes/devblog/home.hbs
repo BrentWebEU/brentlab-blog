@@ -1,0 +1,146 @@
+{{!-- 
+Template Name: Homepage
+Description: Custom landing page with hero, featured posts, and latest content
+--}}
+{{!< default}}
+
+{{!-- Hero Section --}}
+<section class="hero">
+    <div class="hero-gradient"></div>
+    <div class="container">
+        <div class="hero-content">
+            {{#if @site.cover_image}}
+                <div class="hero-image">
+                    <img src="{{@site.cover_image}}" alt="{{@site.title}}" loading="eager">
+                </div>
+            {{/if}}
+            
+            <h1 class="hero-title">
+                {{#if @site.title}}
+                    {{@site.title}}
+                {{else}}
+                    Welcome to DevBlog
+                {{/if}}
+            </h1>
+            
+            {{#if @site.description}}
+                <p class="hero-description typing-text">{{@site.description}}</p>
+            {{else}}
+                <p class="hero-description typing-text">Exploring code, Linux, and the art of software development</p>
+            {{/if}}
+            
+            <div class="hero-actions">
+                <a href="#latest-posts" class="btn btn-primary">
+                    Explore Posts
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                </a>
+                {{#if @site.members_enabled}}
+                    <a href="{{@site.url}}/subscribe/" class="btn btn-outline">
+                        Subscribe
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    
+    {{!-- Scroll Indicator --}}
+    <div class="scroll-indicator" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+    </div>
+</section>
+
+{{!-- Featured Posts Section --}}
+{{#get "posts" limit="3" filter="featured:true" as |featured_posts|}}
+    {{#if featured_posts}}
+        <section class="featured-posts">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Posts</h2>
+                    <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                </div>
+                
+                <div class="featured-posts-grid">
+                    {{#foreach featured_posts}}
+                        {{> "post-card"}}
+                    {{/foreach}}
+                </div>
+            </div>
+        </section>
+    {{/if}}
+{{/get}}
+
+{{!-- Latest Posts Section --}}
+<section class="latest-posts" id="latest-posts">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Latest Posts</h2>
+            <a href="{{@site.url}}" class="section-link">
+                View All
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+        </div>
+        
+        {{#if posts}}
+            <div class="posts-grid">
+                {{#foreach posts}}
+                    {{> "post-card"}}
+                {{/foreach}}
+            </div>
+            
+            {{!-- Pagination --}}
+            {{pagination}}
+        {{else}}
+            <div class="no-posts">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <h3>No posts yet</h3>
+                <p>Check back soon for new content!</p>
+            </div>
+        {{/if}}
+    </div>
+</section>
+
+{{!-- Newsletter Section (if members enabled) --}}
+{{#if @site.members_enabled}}
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-card">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Stay Updated</h2>
+                    <p class="newsletter-description">
+                        Get the latest posts, tutorials, and insights delivered straight to your inbox.
+                    </p>
+                </div>
+                <div class="newsletter-form-wrapper">
+                    <a href="{{@site.url}}/subscribe/" class="btn btn-accent btn-lg">
+                        Subscribe Now
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{{/if}}

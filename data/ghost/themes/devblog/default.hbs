@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}" data-theme="light">
+<head>
+    {{!-- Document Settings --}}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    {{!-- Theme Detection & Dark Mode (must be in head to prevent flash) --}}
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    
+    {{!-- Site Title --}}
+    <title>{{meta_title}}</title>
+    
+    {{!-- Site Styles --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}">
+    <link rel="stylesheet" type="text/css" href="{{asset "css/prism-theme.css"}}">
+    <link rel="stylesheet" type="text/css" href="{{asset "css/animations.css"}}">
+    
+    {{!-- Preconnect to font provider for better performance --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    {{!-- Load fonts with font-display swap for better performance --}}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    </noscript>
+    
+    {{!-- Favicon --}}
+    {{#if @site.icon}}
+        <link rel="icon" href="{{@site.icon}}" type="image/png">
+    {{/if}}
+    
+    {{!-- RSS Feed --}}
+    <link rel="alternate" type="application/rss+xml" title="{{@site.title}}" href="{{@site.url}}/rss/">
+    
+    {{!-- Open Graph & Social Meta --}}
+    <meta property="og:site_name" content="{{@site.title}}">
+    <meta property="og:type" content="{{#is "post"}}article{{else}}website{{/is}}">
+    <meta property="og:title" content="{{meta_title}}">
+    <meta property="og:description" content="{{meta_description}}">
+    <meta property="og:url" content="{{url absolute="true"}}">
+    {{#if feature_image}}
+        <meta property="og:image" content="{{feature_image}}">
+    {{/if}}
+    
+    
+    {{!-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{meta_title}}">
+    <meta name="twitter:description" content="{{meta_description}}">
+    <meta name="twitter:url" content="{{url absolute="true"}}">
+    {{#if feature_image}}
+        <meta name="twitter:image" content="{{feature_image}}">
+    {{/if}}
+    
+    {{!-- Canonical URL --}}
+    <link rel="canonical" href="{{url absolute="true"}}">
+    
+    {{!-- Ghost Head - includes meta tags, scripts, styles --}}
+    {{ghost_head}}
+</head>
+
+<body class="{{body_class}}">
+    {{!-- Skip to content link for accessibility --}}
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
+    {{!-- Site Header --}}
+    {{> "header"}}
+    
+    {{!-- Main Content Area --}}
+    <main id="main-content" class="site-main">
+        {{!-- All the content gets inserted here, index.hbs, post.hbs, etc --}}
+        {{{body}}}
+    </main>
+    
+    {{!-- Site Footer --}}
+    {{> "footer"}}
+    
+    {{!-- JavaScript Files --}}
+    <script src="{{asset "js/main.js"}}" defer></script>
+    <script src="{{asset "js/theme-toggle.js"}}" defer></script>
+    <script src="{{asset "js/prism.js"}}" defer></script>
+    
+    {{!-- Ghost Footer - includes scripts, analytics --}}
+    {{ghost_foot}}
+</body>
+</html>

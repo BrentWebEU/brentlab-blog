@@ -1,0 +1,101 @@
+{{!-- 
+Template Name: Author Archive
+Description: Author archive page with author info and their posts
+--}}
+{{!< default}}
+
+{{#author}}
+    <div class="author-header">
+        <div class="container">
+            <div class="author-header-content">
+                {{#if profile_image}}
+                    <img src="{{profile_image}}" alt="{{name}}" class="author-avatar">
+                {{/if}}
+                <h1 class="author-name">{{name}}</h1>
+                {{#if bio}}
+                    <p class="author-bio">{{bio}}</p>
+                {{/if}}
+                <div class="author-meta">
+                    {{#if location}}
+                        <span class="author-location">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            {{location}}
+                        </span>
+                    {{/if}}
+                    {{#if website}}
+                        <a href="{{website}}" class="author-website" target="_blank" rel="noopener noreferrer">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            Website
+                        </a>
+                    {{/if}}
+                    {{#if twitter}}
+                        <a href="{{twitter_url twitter}}" class="author-twitter" target="_blank" rel="noopener noreferrer">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                            Twitter
+                        </a>
+                    {{/if}}
+                    <span class="author-post-count">
+                        {{plural pagination.total empty='No posts' singular='% post' plural='% posts'}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/author}}
+
+<div class="author-content">
+    <div class="container">
+        {{#if posts}}
+            <div class="posts-grid">
+                {{#foreach posts}}
+                    {{> "post-card"}}
+                {{/foreach}}
+            </div>
+            
+            {{!-- Pagination --}}
+            <nav class="pagination" role="navigation" aria-label="Pagination">
+                {{#if prev}}
+                    <a href="{{page_url prev}}" class="pagination-link pagination-prev" rel="prev">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        <span>Newer Posts</span>
+                    </a>
+                {{/if}}
+                
+                <div class="pagination-info">
+                    <span class="pagination-current">Page {{page}} of {{pages}}</span>
+                </div>
+                
+                {{#if next}}
+                    <a href="{{page_url next}}" class="pagination-link pagination-next" rel="next">
+                        <span>Older Posts</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                {{/if}}
+            </nav>
+        {{else}}
+            <div class="no-posts">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <h2>No posts yet</h2>
+                <p>Check back soon for new content!</p>
+            </div>
+        {{/if}}
+    </div>
+</div>
