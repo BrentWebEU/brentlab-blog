@@ -622,36 +622,72 @@ button {
    13. Component Styles
    ========================================================================== */
 
-/* Header */
+/* Header - Magazine Style */
 .site-header {
-  padding: var(--space-4) 0;
+  padding: var(--space-6) 0;
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  backdrop-filter: blur(10px);
+  background: var(--color-surface) / 0.95;
+}
+
+.header-wrapper {
+  width: 100%;
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .site-branding {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+  align-items: center;
+  gap: var(--space-3);
 }
 
 .site-logo {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: -0.02em;
   color: var(--color-text);
+  transition: color var(--transition-fast);
+}
+
+.site-logo:hover {
+  color: hsl(var(--primary));
+}
+
+.logo-text {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 .logo-icon {
-  width: 40px;
-  height: 40px;
-  margin-right: var(--space-2);
+  width: 36px;
+  height: 36px;
+}
+
+.logo-name {
+  font-family: var(--font-sans);
 }
 
 .site-description {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   margin: 0;
+  display: none;
 }
 
 .site-nav {
@@ -663,7 +699,46 @@ button {
 .nav-desktop {
   display: flex;
   align-items: center;
+  gap: var(--space-8);
+}
+
+.nav-list {
+  display: flex;
   gap: var(--space-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  position: relative;
+  padding: var(--space-2) 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: hsl(var(--primary));
+  transition: width var(--transition-base);
+}
+
+.nav-link:hover,
+.nav-link-active {
+  color: hsl(var(--primary));
+}
+
+.nav-link:hover::after,
+.nav-link-active::after {
+  width: 100%;
 }
 
 .mobile-menu-toggle {

@@ -1,0 +1,439 @@
+/**
+ * Magazine-Style Enhancements
+ * High-end editorial design improvements
+ */
+
+/* ==========================================================================
+   Hero Section - Magazine Editorial Style
+   ========================================================================== */
+
+.hero {
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg) 100%);
+  padding: calc(var(--space-20) + var(--space-16)) 0 var(--space-24);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  background: radial-gradient(ellipse at top, hsl(var(--primary) / 0.03), transparent 70%);
+  pointer-events: none;
+}
+
+.hero__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.hero__content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: hsl(var(--primary) / 0.1);
+  border: 1px solid hsl(var(--primary) / 0.2);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: hsl(var(--primary));
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-8);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.hero__title {
+  font-size: clamp(2.75rem, 9vw, 5.5rem);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0 0 var(--space-6);
+  color: var(--color-text);
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.hero__title .highlight {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__tagline {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  max-width: 42rem;
+  margin: 0 auto var(--space-10);
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollIndicator 2s ease-in-out infinite;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   Magazine Grid Layouts
+   ========================================================================== */
+
+.magazine-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-8);
+  margin-bottom: var(--space-16);
+}
+
+.magazine-grid__featured {
+  grid-column: span 12;
+  position: relative;
+}
+
+.magazine-grid__featured .post-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  min-height: 500px;
+}
+
+.magazine-grid__featured .post-card-image {
+  aspect-ratio: 3 / 2;
+  height: 100%;
+}
+
+.magazine-grid__secondary {
+  grid-column: span 6;
+}
+
+.magazine-grid__tertiary {
+  grid-column: span 4;
+}
+
+@media (max-width: 1024px) {
+  .magazine-grid__featured .post-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  
+  .magazine-grid__secondary,
+  .magazine-grid__tertiary {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 768px) {
+  .magazine-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  
+  .magazine-grid__featured,
+  .magazine-grid__secondary,
+  .magazine-grid__tertiary {
+    grid-column: span 1;
+  }
+}
+
+/* ==========================================================================
+   Enhanced Post Cards - Magazine Quality
+   ========================================================================== */
+
+.post-card {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--color-border);
+}
+
+.post-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.03), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+
+.post-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-color: hsl(var(--primary) / 0.2);
+}
+
+.post-card:hover::before {
+  opacity: 1;
+}
+
+.post-card-image {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: linear-gradient(135deg, hsl(var(--muted)), hsl(var(--muted) / 0.5));
+}
+
+.post-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.post-card:hover .post-card-image::after {
+  opacity: 1;
+}
+
+.post-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.post-card:hover .post-card-image img {
+  transform: scale(1.08);
+}
+
+.post-card-content {
+  padding: var(--space-8);
+  position: relative;
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.post-card-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  background: hsl(var(--primary));
+  color: var(--color-primary-foreground);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.post-card-tag:hover {
+  background: hsl(var(--primary) / 0.9);
+  transform: translateY(-1px);
+}
+
+.post-card-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-3);
+  color: var(--color-text);
+  transition: color var(--transition-fast);
+}
+
+.post-card:hover .post-card-title {
+  color: hsl(var(--primary));
+}
+
+.post-card-excerpt {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-6);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-card-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  margin-top: auto;
+}
+
+.post-card-author-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+}
+
+.post-card-author-name {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   Section Styling - Editorial Separators
+   ========================================================================== */
+
+.section-divider {
+  width: 100%;
+  max-width: 1200px;
+  margin: var(--space-20) auto;
+  padding: 0 var(--space-6);
+}
+
+.section-divider__line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+  position: relative;
+}
+
+.section-divider__ornament {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--primary));
+}
+
+/* ==========================================================================
+   Typography Enhancements
+   ========================================================================== */
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: hsl(var(--primary));
+  margin-bottom: var(--space-3);
+}
+
+.section-title--large {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--space-4);
+}
+
+.section-subtitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  max-width: 42rem;
+}
+
+/* ==========================================================================
+   Pull Quotes & Featured Text
+   ========================================================================== */
+
+.pull-quote {
+  padding: var(--space-10);
+  margin: var(--space-12) 0;
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.05), transparent);
+  border-left: 4px solid hsl(var(--primary));
+  border-radius: var(--radius-lg);
+}
+
+.pull-quote__text {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+  color: var(--color-text);
+  font-style: italic;
+  margin: 0;
+}
+
+.pull-quote__attribution {
+  margin-top: var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-style: normal;
+}
+
+/* ==========================================================================
+   No Posts State
+   ========================================================================== */
+
+.no-posts {
+  text-align: center;
+  padding: var(--space-24) var(--space-8);
+  background: linear-gradient(135deg, hsl(var(--muted) / 0.3), transparent);
+  border-radius: var(--radius-2xl);
+  border: 2px dashed var(--color-border);
+}
+
+.no-posts svg {
+  margin: 0 auto var(--space-6);
+  opacity: 0.3;
+  color: var(--color-text-secondary);
+}
+
+.no-posts h2 {
+  font-size: var(--font-size-3xl);
+  margin: 0 0 var(--space-3);
+}
+
+.no-posts p {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+}

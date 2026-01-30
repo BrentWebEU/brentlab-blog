@@ -4,46 +4,45 @@ Description: Custom landing page with hero, featured posts, and latest content
 --}}
 {{!< default}}
 
-{{!-- Hero Section --}}
+{{!-- Hero Section - Magazine Editorial --}}
 <section class="hero">
-    <div class="hero-gradient"></div>
-    <div class="container">
-        <div class="hero-content">
-            {{#if @site.cover_image}}
-                <div class="hero-image">
-                    <img src="{{@site.cover_image}}" alt="{{@site.title}}" loading="eager">
-                </div>
-            {{/if}}
+    <div class="hero__container">
+        <div class="hero__content">
+            <div class="hero__badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                Developer Blog
+            </div>
             
-            <h1 class="hero-title">
+            <h1 class="hero__title">
                 {{#if @site.title}}
                     {{@site.title}}
                 {{else}}
-                    Welcome to DevBlog
+                    <span class="highlight">Brent Lab</span>
                 {{/if}}
             </h1>
             
             {{#if @site.description}}
-                <p class="hero-description typing-text">{{@site.description}}</p>
+                <p class="hero__tagline">{{@site.description}}</p>
             {{else}}
-                <p class="hero-description typing-text">Exploring code, Linux, and the art of software development</p>
+                <p class="hero__tagline">Exploring code, open source, and the art of software development</p>
             {{/if}}
             
-            <div class="hero-actions">
+            <div class="hero__actions">
                 <a href="#latest-posts" class="btn btn-primary">
-                    Explore Posts
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <polyline points="19 12 12 19 5 12"></polyline>
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                     </svg>
+                    Explore Posts
                 </a>
                 {{#if @site.members_enabled}}
                     <a href="{{@site.url}}/subscribe/" class="btn btn-outline">
-                        Subscribe
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </svg>
+                        Subscribe
                     </a>
                 {{/if}}
             </div>
@@ -52,23 +51,27 @@ Description: Custom landing page with hero, featured posts, and latest content
     
     {{!-- Scroll Indicator --}}
     <div class="scroll-indicator" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <polyline points="19 12 12 19 5 12"></polyline>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M19 12l-7 7-7-7"/>
         </svg>
     </div>
 </section>
 
-{{!-- Featured Posts Section --}}
+{{!-- Featured Posts Section - Magazine Grid --}}
 {{#get "posts" limit="3" filter="featured:true" as |featured_posts|}}
     {{#if featured_posts}}
         <section class="featured-posts">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Featured Posts</h2>
-                    <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                    </svg>
+                    <div>
+                        <span class="eyebrow">Editor's Choice</span>
+                        <h2 class="section-title">
+                            <svg class="section-icon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                            Featured Posts
+                        </h2>
+                    </div>
                 </div>
                 
                 <div class="featured-posts-grid">
@@ -78,6 +81,18 @@ Description: Custom landing page with hero, featured posts, and latest content
                 </div>
             </div>
         </section>
+        
+        {{!-- Section Divider --}}
+        <div class="section-divider">
+            <div class="section-divider__line">
+                <div class="section-divider__ornament">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="4"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
     {{/if}}
 {{/get}}
 
@@ -85,9 +100,12 @@ Description: Custom landing page with hero, featured posts, and latest content
 <section class="latest-posts" id="latest-posts">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Latest Posts</h2>
+            <div>
+                <span class="eyebrow">Recent Stories</span>
+                <h2 class="section-title">Latest Posts</h2>
+            </div>
             <a href="{{@site.url}}" class="section-link">
-                View All
+                View All Articles
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -122,22 +140,32 @@ Description: Custom landing page with hero, featured posts, and latest content
 
 {{!-- Newsletter Section (if members enabled) --}}
 {{#if @site.members_enabled}}
+    {{!-- Section Divider --}}
+    <div class="section-divider">
+        <div class="section-divider__line">
+            <div class="section-divider__ornament">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    
     <section class="newsletter-section">
         <div class="container">
             <div class="newsletter-card">
-                <div class="newsletter-content">
-                    <h2 class="newsletter-title">Stay Updated</h2>
-                    <p class="newsletter-description">
-                        Get the latest posts, tutorials, and insights delivered straight to your inbox.
-                    </p>
-                </div>
+                <span class="eyebrow">Newsletter</span>
+                <h2 class="newsletter-title">Stay in the Loop</h2>
+                <p class="newsletter-description">
+                    Get the latest posts, tutorials, and insights delivered straight to your inbox. No spam, just quality content.
+                </p>
                 <div class="newsletter-form-wrapper">
-                    <a href="{{@site.url}}/subscribe/" class="btn btn-accent btn-lg">
-                        Subscribe Now
+                    <a href="{{@site.url}}/subscribe/" class="btn btn-primary btn-lg">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </svg>
+                        Subscribe Now
                     </a>
                 </div>
             </div>
