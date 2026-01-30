@@ -469,13 +469,14 @@
 }
 
 /* ==========================================================================
-   Back to Top Button
+   Back to Top Button - Aligned with content area
    ========================================================================== */
 
 .back-to-top {
     position: fixed;
     bottom: var(--space-8);
-    right: var(--space-8);
+    /* Align with content: on wide screens sit at right edge of content column */
+    right: max(var(--space-8), calc((100vw - var(--container-width)) / 2 + var(--space-8)));
     width: 48px;
     height: 48px;
     background: var(--color-primary);
@@ -504,6 +505,12 @@
 
 .back-to-top:active {
     transform: translateY(0);
+}
+
+@media (max-width: 1280px) {
+    .back-to-top {
+        right: var(--space-8);
+    }
 }
 
 /* ==========================================================================
